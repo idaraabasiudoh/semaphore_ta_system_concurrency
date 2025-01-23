@@ -1,0 +1,7 @@
+Although I can't say for sure yet (I'm still reading up on course material), I believe there were no deadlocks or livelocks for some or all of the following reasons:
+
+1. Each TA always acquires their own semaphore first then acquires the next TA's semaphore which prevents a circular like wait scenario.
+2. Both semaphores are released before marking begins.
+3. Each semaphore is initialized to 1, allowing single access
+4. sem_wait() blocks processes until resource is available
+5. The double access rotation pattern just ensures fairness (Not too sure but would love feedback here towards the finals)

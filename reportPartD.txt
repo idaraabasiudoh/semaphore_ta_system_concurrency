@@ -1,0 +1,23 @@
+Execution Report for Part D
+
+No, after running my code, there were no deadlocks or livelocks.
+
+This is the general structure of my code:
+
+- I created and initialized semaphores for each TA
+- I mapped shared memory for student numbers
+- Loaded student number from text file
+
+- The parent forks the number of TA child processes
+- Each child process runs TA_process() with a unique ta_id which runs concurrently as long as the 3 cycles are not complete yet
+
+- Each TA acquires their semaphore and the next TA's semaphore
+- Accesses shared index and student number in the critical section
+- It releases semaphores and both perform marking
+
+- I make the parent wait for all TA processes to complete, clean up semaphores, shared memory and exit the program
+
+Solution to Critical-Section Problem
+1. Mutual Exclusion: When a TA is accessing shared memory, no other student can be accessing it too.
+2. Progress: When a TA wants to access the shared memory they cannot be postponed indefinitely, if critical section is free
+3. Bounded Waiting: We're using a rotation pattern so each TA will be given the same amount of time between each attempt to acces the shared data (enter the critical section) 
